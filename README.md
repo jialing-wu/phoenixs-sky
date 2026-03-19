@@ -6,13 +6,13 @@ Phoenix is a busy bird — delivering letters, training with the flock, and snea
 
 > Zero UI libraries. Pure CSS Modules. Built to be read and rewritten by AI.
 
-https://github.com/user-attachments/assets/demo.mp4
+<video src="https://github.com/jialing-wu/phoenixs-sky/raw/main/public/demo.mp4" width="100%" autoplay muted loop></video>
 
 ## Quick Start
 
 ```bash
-git clone <this-repo>
-cd calendar-ui
+git clone https://github.com/jialing-wu/phoenixs-sky.git
+cd phoenixs-sky
 cp .env.example .env.local   # demo mode is on by default
 npm install
 npm run dev
