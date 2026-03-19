@@ -1,0 +1,91 @@
+.menu {
+  position: fixed;
+  z-index: 100;
+  min-width: 180px;
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+  padding: 4px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.item {
+  display: block;
+  width: 100%;
+  padding: 6px 14px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-data);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  text-align: left;
+}
+
+.item:hover {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 4px 0;
+}
+
+.colorRow {
+  display: flex;
+  gap: 4px;
+  padding: 6px 14px;
+  flex-wrap: wrap;
+}
+
+.colorSwatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.colorSwatch:hover {
+  transform: scale(1.2);
+}
+
+.deleteItem {
+  color: #c0392b;
+}
+
+/* ── Cyberpunk dark mode ── */
+@media (prefers-color-scheme: dark) {
+  .menu {
+    background: var(--bg-elevated);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.15), 0 0 50px rgba(0, 240, 255, 0.05), 0 4px 20px rgba(0, 0, 0, 0.6);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    animation: neonBorderPulse 3s ease-in-out infinite;
+  }
+  .item {
+    color: var(--text);
+    letter-spacing: 0.06em;
+  }
+  .item:hover {
+    background: rgba(0, 240, 255, 0.1);
+    text-shadow: 0 0 4px rgba(0, 240, 255, 0.2);
+  }
+  .divider {
+    background: rgba(0, 240, 255, 0.12);
+  }
+  .deleteItem {
+    color: var(--accent-pink);
+    text-shadow: 0 0 4px rgba(255, 46, 99, 0.2);
+  }
+  .colorSwatch {
+    box-shadow: 0 0 3px currentColor;
+  }
+  .colorSwatch:hover {
+    box-shadow: 0 0 8px currentColor;
+  }
+}

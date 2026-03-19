@@ -1,0 +1,100 @@
+.main {
+  display: flex;
+  height: calc(100vh - 72px);
+  margin-top: 72px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.calendarArea {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ── Floating buttons (hidden on desktop) ── */
+.fabColumn, .fabDot, .fabDotActive {
+  display: none;
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .main {
+    height: calc(100vh - 36px);
+    margin-top: 36px;
+  }
+  .main > aside {
+    display: none;
+  }
+
+  /* Floating button column */
+  .fabColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: fixed;
+    bottom: 1rem;
+    right: 0.75rem;
+    z-index: 60;
+  }
+
+  .fabDot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--divider);
+    font-family: var(--font-serif);
+    font-size: 0.65rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+  }
+
+  .fabDotActive {
+    composes: fabDot;
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-size: 0.7rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .fabDot:disabled,
+  .fabDotActive:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .fabLoading {
+    animation: fabPulse 1s ease-in-out infinite;
+  }
+  @keyframes fabPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+}
+
+/* ── Cyberpunk dark mode ── */
+@media (prefers-color-scheme: dark) {
+  .fabDot {
+    background: var(--bg-elevated);
+    border-color: rgba(77, 216, 224, 0.2);
+    box-shadow: 0 0 8px rgba(77, 216, 224, 0.15);
+    color: var(--accent);
+  }
+  .fabDotActive {
+    background: var(--accent);
+    color: var(--bg);
+    box-shadow: var(--glow-cyan);
+  }
+}

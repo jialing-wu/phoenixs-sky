@@ -1,0 +1,415 @@
+.topLine {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 100;
+}
+
+.header {
+  position: fixed;
+  top: 2px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--divider);
+  padding: 0 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 70px;
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--text);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.center {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  font-family: var(--font-data);
+  font-size: 1.05rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text);
+  opacity: 0.5;
+  padding: 0;
+}
+
+.arrow:hover {
+  opacity: 0.8;
+}
+
+.todayBtn {
+  font-family: var(--font-data);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--divider);
+  color: var(--text);
+  padding: 0.25rem 0.85rem;
+}
+
+.refreshBtn {
+  font-family: var(--font-data);
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text);
+  opacity: 0.35;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.refreshBtn:hover {
+  opacity: 0.8;
+}
+
+.refreshBtn:disabled {
+  cursor: default;
+}
+
+.refreshBtnLoading {
+  animation: spin 1s linear infinite;
+  opacity: 0.6;
+}
+
+/* ── Nav (desktop) ── */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navItem {
+  font-family: var(--font-data);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.4;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.navItem:hover {
+  opacity: 0.7;
+}
+
+.navItemActive {
+  composes: navItem;
+  opacity: 1;
+  border-bottom-color: var(--accent);
+}
+
+/* ── Calendar toggle (desktop) ── */
+.calToggle {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.calToggle:hover {
+  opacity: 0.7 !important;
+}
+
+.navDivider {
+  width: 1px;
+  height: 16px;
+  background: var(--divider);
+  margin: 0 0.25rem;
+}
+
+/* ── Mobile rows (hidden on desktop) ── */
+.mobileRow1,
+.mobileRow2 {
+  display: none;
+}
+
+.mobileBrand {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.mobileLeft {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.mobileNavArrows {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+}
+
+.mobileRight {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.mobileTab {
+  font-family: var(--font-data);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.4;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.2rem 0.35rem;
+  border-bottom: 1.5px solid transparent;
+}
+
+.mobileTab:first-child {
+  padding-left: 0;
+}
+
+.mobileTabActive {
+  composes: mobileTab;
+  opacity: 1;
+  border-bottom-color: var(--accent);
+}
+
+.arrowMobile {
+  font-size: 1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text);
+  opacity: 0.45;
+  padding: 0.1rem 0.15rem;
+  line-height: 1;
+}
+
+.todayBtnMobile {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--accent);
+  padding: 0;
+  font-weight: 600;
+}
+
+.refreshBtnMobile {
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text);
+  opacity: 0.35;
+  padding: 0;
+}
+
+.calToggleMobile {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  color: var(--text);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.mobileViewTabs {
+  display: none;
+}
+
+.mobileViewTab {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  opacity: 0.35;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.15rem 0.3rem;
+}
+
+.mobileViewTabActive {
+  composes: mobileViewTab;
+  opacity: 1;
+  color: var(--accent);
+}
+
+.editorialToggle {
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  opacity: 0.4;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.editorialToggleActive {
+  composes: editorialToggle;
+  opacity: 1;
+  color: var(--accent);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Mobile ── */
+@media (max-width: 767px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 0.3rem 0.75rem;
+    gap: 0;
+  }
+
+  /* Hide desktop elements */
+  .brand,
+  .center,
+  .nav {
+    display: none;
+  }
+
+  /* Show mobile rows */
+  .mobileRow1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .mobileBrand {
+    font-size: 1.5rem;
+  }
+
+  .mobileViewTabs {
+    display: flex;
+    gap: 0.15rem;
+    align-items: center;
+  }
+
+  .mobileRow2 {
+    display: none;
+  }
+}
+
+/* ── Cyberpunk dark mode ── */
+@media (prefers-color-scheme: dark) {
+  .topLine {
+    background: linear-gradient(90deg, var(--accent-red), var(--accent), var(--accent-green), var(--accent-pink), var(--accent));
+    background-size: 300% 100%;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6), 0 0 30px rgba(0, 240, 255, 0.2);
+    animation: cyberFlicker 5s infinite, topLineShift 3s linear infinite;
+    height: 3px;
+  }
+  @keyframes topLineShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+  .header {
+    background: var(--bg-surface);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
+  }
+  .brand {
+    color: var(--accent);
+    text-shadow: var(--glow-cyan);
+    letter-spacing: 0.08em;
+    animation: cyberGlitch 5s infinite;
+  }
+  .mobileBrand {
+    color: var(--accent);
+    text-shadow: var(--glow-cyan);
+    animation: cyberGlitch 5s infinite;
+  }
+  .todayBtn {
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    color: var(--accent);
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.3);
+  }
+  .todayBtn:hover {
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+  }
+  .todayBtnMobile {
+    color: var(--accent);
+    text-shadow: var(--glow-cyan);
+  }
+  .navItem {
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+  }
+  .navItemActive {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+  }
+  .arrow {
+    color: var(--accent);
+    opacity: 0.4;
+    text-shadow: 0 0 4px rgba(0, 240, 255, 0.3);
+  }
+  .mobileTabActive {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.3);
+  }
+  .mobileViewTabActive {
+    color: var(--accent);
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.3);
+  }
+  .editorialToggleActive {
+    color: var(--accent);
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.3);
+  }
+  .refreshBtn {
+    color: var(--accent);
+  }
+  .navDivider {
+    background: rgba(0, 240, 255, 0.2);
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "phoenixs-sky",
+  "version": "1.0.0",
+  "description": "An agent-native calendar you can fully customize with AI",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@upstash/redis": "^1.37.0",
+    "googleapis": "^171.4.0",
+    "next": "^14.2.35",
+"react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "typescript": "^5.9.3"
+  }
+}

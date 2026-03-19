@@ -1,0 +1,373 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel {
+  background: var(--bg);
+  width: 420px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow: visible;
+  border: 1px solid var(--divider);
+  padding: 2rem;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-family: var(--font-data);
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  opacity: 0.4;
+  padding: 0.25rem;
+}
+
+.close:hover {
+  opacity: 0.8;
+}
+
+.calLabel {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.calDot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 1rem 0;
+}
+
+.row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.rowLabel {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  min-width: 60px;
+}
+
+.rowValue {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.confLink {
+  font-family: var(--font-data);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.confLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Create form ──────────────────────────── */
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formLabel {
+  font-family: var(--font-data);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.formInput {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.4rem 0;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  background: transparent;
+  color: var(--text);
+  outline: none;
+}
+
+.formInput:focus {
+  border-bottom-color: var(--accent);
+}
+
+.formTextarea {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.4rem 0;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.formTextarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+/* ── Custom select dropdown ──────────────── */
+.customSelect {
+  position: relative;
+  width: 100%;
+}
+
+.selectTrigger {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 0.4rem 0;
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectValue {
+  flex: 1;
+}
+
+.selectDot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.selectDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border: 1px solid var(--divider);
+  z-index: 300;
+  margin-top: 2px;
+}
+
+.selectOption {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectOption:hover {
+  background: color-mix(in srgb, var(--text) 5%, var(--bg));
+}
+
+.selectOptionActive {
+  font-weight: 600;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.submitBtn {
+  font-family: var(--font-data);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+  padding: calc(0.6rem - 1px) 1.5rem;
+  cursor: pointer;
+  width: 6rem;
+  text-align: center;
+}
+
+.deleteBtn {
+  font-family: var(--font-data);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: none;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: calc(0.6rem - 1px) 1.5rem;
+  cursor: pointer;
+  width: 6rem;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.agentLabel {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-left: auto;
+}
+
+.agentLabelInline {
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-left: 0.5rem;
+}
+
+/* ── Cyberpunk dark mode ── */
+@media (prefers-color-scheme: dark) {
+  .overlay {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+  }
+  .panel {
+    background: var(--bg-elevated);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.2), 0 0 80px rgba(0, 240, 255, 0.06), 0 4px 20px rgba(0, 0, 0, 0.6);
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    animation: neonBorderPulse 3s ease-in-out infinite;
+  }
+  .close {
+    color: var(--accent-pink);
+    text-shadow: 0 0 4px rgba(255, 46, 99, 0.3);
+  }
+  .calLabel {
+    color: var(--accent);
+    opacity: 0.7;
+    text-shadow: 0 0 4px rgba(0, 240, 255, 0.2);
+  }
+  .calDot {
+    box-shadow: 0 0 4px currentColor;
+  }
+  .title {
+    color: var(--accent);
+    text-shadow: var(--glow-cyan);
+  }
+  .divider {
+    border-top: 1px dashed rgba(0, 240, 255, 0.2);
+  }
+  .rowLabel {
+    color: var(--accent);
+    opacity: 0.5;
+    text-shadow: 0 0 3px rgba(0, 240, 255, 0.15);
+  }
+  .formLabel {
+    color: var(--accent);
+    opacity: 0.5;
+  }
+  .formInput {
+    border-bottom-color: rgba(0, 240, 255, 0.15);
+  }
+  .formInput:focus,
+  .formTextarea:focus {
+    border-bottom-color: var(--accent);
+    box-shadow: 0 1px 0 rgba(0, 240, 255, 0.3);
+  }
+  .formTextarea {
+    border-bottom-color: rgba(0, 240, 255, 0.15);
+  }
+  .selectTrigger {
+    border-bottom-color: rgba(0, 240, 255, 0.15);
+  }
+  .selectDropdown {
+    background: var(--bg-elevated);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.1);
+  }
+  .selectDot {
+    box-shadow: 0 0 3px currentColor;
+  }
+  .selectOption:hover {
+    background: rgba(0, 240, 255, 0.08);
+  }
+  .submitBtn {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    text-shadow: none;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  }
+  .submitBtn:hover {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  }
+  .deleteBtn {
+    color: var(--accent-pink);
+    border-color: var(--accent-pink);
+  }
+  .deleteBtn:hover {
+    box-shadow: 0 0 12px rgba(255, 46, 99, 0.3);
+  }
+  .confLink {
+    color: var(--accent-green);
+    text-shadow: 0 0 4px rgba(0, 255, 136, 0.2);
+  }
+  .agentLabel,
+  .agentLabelInline {
+    color: var(--accent);
+    text-shadow: 0 0 3px rgba(0, 240, 255, 0.2);
+  }
+}
