@@ -6,7 +6,7 @@ Phoenix is a busy bird — delivering letters, training with the flock, and snea
 
 > Zero UI libraries. Pure CSS Modules. Built to be read and rewritten by AI.
 
-<video src="https://github.com/jialing-wu/phoenixs-sky/raw/main/public/demo.mp4" width="100%" autoplay muted loop></video>
+https://github.com/user-attachments/assets/afe7df82-45ee-44cd-b97d-db0a64cce5ec
 
 ## Quick Start
 
