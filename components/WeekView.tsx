@@ -33,12 +33,14 @@ function minutesToIso(baseDate: Date, dayOffset: number, minutes: number): strin
   const d = new Date(baseDate);
   d.setDate(d.getDate() + dayOffset);
   d.setHours(Math.floor(minutes / 60), minutes % 60, 0, 0);
-  return d.toISOString();
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:00`;
 }
 
 export default function WeekView({ weekStart: weekStartProp, events, hiddenEvents, colorOverrides, taskLinks, onToggleTask, onEventClick, onSlotClick, onEventMove, onEventResize, onContextMenu, onDayClick, showEditorial }: WeekViewProps) {
   const today = new Date();
-  const todayStr = today.toISOString().split('T')[0];
+  const localDate = (d: Date) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const todayStr = localDate(today);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const [pxPerMin, setPxPerMin] = useState(1);
@@ -82,8 +84,8 @@ export default function WeekView({ weekStart: weekStartProp, events, hiddenEvent
     return h === 0 ? collapsedH : normalHourH;
   }
 
-  const weekStartStr = weekStart.toISOString().split('T')[0];
-  const weekEndStr = weekEnd.toISOString().split('T')[0];
+  const weekStartStr = localDate(weekStart);
+  const weekEndStr = localDate(weekEnd);
   const weekEvents = useMemo(() =>
     events.filter(e => {
       if (e.allDay) {
@@ -398,7 +400,7 @@ export default function WeekView({ weekStart: weekStartProp, events, hiddenEvent
         {DAY_NAMES.map((name, i) => {
           const d = new Date(weekStartProp);
           d.setDate(d.getDate() + i);
-          const dateStr = d.toISOString().split('T')[0];
+          const dateStr = localDate(d);
           const isToday = dateStr === todayStr;
           const clickDate = new Date(d);
           return (
@@ -582,7 +584,7 @@ export default function WeekView({ weekStart: weekStartProp, events, hiddenEvent
               {(() => {
                 const d = new Date(weekStartProp);
                 d.setDate(d.getDate() + dayIdx);
-                return d.toISOString().split('T')[0] === todayStr;
+                return localDate(d) === todayStr;
               })() && (
                 <div className={styles.nowLine} style={{ top: `${minToPx(nowMinutes)}px` }}>
                   <div className={styles.nowDot} />

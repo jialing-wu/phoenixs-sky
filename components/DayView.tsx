@@ -54,22 +54,30 @@ function getNoteAgentColor(title: string, description?: string): string | undefi
 function minutesToIso(baseDate: Date, minutes: number): string {
   const d = new Date(baseDate);
   d.setHours(Math.floor(minutes / 60), minutes % 60, 0, 0);
-  return d.toISOString();
+  // Return local ISO format instead of UTC to preserve timezone
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:00`;
 }
 
 export default function DayView({ date, events, noteEvents, hiddenEvents, colorOverrides, taskLinks, onToggleTask, onEventClick, onSlotClick, onEventMove, onEventResize, onContextMenu, showEditorial }: DayViewProps) {
-  const dateStr = date.toISOString().split('T')[0];
+  // Use LOCAL date string (not UTC) to correctly handle timezone offsets
+  const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
   const containerRef = useRef<HTMLDivElement>(null);
   const [pxPerMin, setPxPerMin] = useState(1);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    const observer = new ResizeObserver(() => {
-      setPxPerMin(Math.max(0.25, el.clientHeight / (TOTAL_HOURS * 60)));
-    });
+    const measure = () => {
+      const h = el.clientHeight;
+      if (h > 0) setPxPerMin(Math.max(0.25, h / (TOTAL_HOURS * 60)));
+    };
+    // Measure after layout settles (rAF + fallback timeout for tab-switch remount)
+    const raf = requestAnimationFrame(measure);
+    const timer = setTimeout(measure, 100);
+    const observer = new ResizeObserver(measure);
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => { cancelAnimationFrame(raf); clearTimeout(timer); observer.disconnect(); };
   }, []);
 
   const totalWeight = COLLAPSE_WEIGHT + (TOTAL_HOURS - EARLY_END);
@@ -95,18 +103,32 @@ export default function DayView({ date, events, noteEvents, hiddenEvents, colorO
   }
 
   const dayEvents = useMemo(() =>
-    events.filter(e => !e.allDay && e.start.split('T')[0] === dateStr)
-      .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
+    events.filter(e => {
+      if (e.allDay) return false;
+      const d = new Date(e.start);
+      const local = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      return local === dateStr;
+    }).sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
     [events, dateStr]
   );
 
   const allDayEvents = useMemo(() =>
-    events.filter(e => e.allDay && e.start.split('T')[0] <= dateStr && e.end.split('T')[0] > dateStr),
+    events.filter(e => {
+      if (!e.allDay) return false;
+      const s = e.start.split('T')[0];
+      let end = e.end.split('T')[0];
+      if (end <= s) {
+        const d = new Date(s + 'T00:00:00Z');
+        d.setUTCDate(d.getUTCDate() + 1);
+        end = d.toISOString().split('T')[0];
+      }
+      return s <= dateStr && end > dateStr;
+    }),
     [events, dateStr]
   );
 
   const now = new Date();
-  const isToday = dateStr === now.toISOString().split('T')[0];
+  const isToday = dateStr === `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
   function getEventPos(event: CalendarEvent): { top: number; height: number; startMin: number; endMin: number } {
@@ -351,7 +373,7 @@ export default function DayView({ date, events, noteEvents, hiddenEvents, colorO
         <div className={styles.editorialMonth}>{MONTHS[date.getMonth()]} {date.getFullYear()}</div>
         <hr className={styles.editorialDivider} />
         {(() => {
-          const dateStr = date.toISOString().split('T')[0];
+          const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
           const notes = (noteEvents || []).filter(e => {
             const eStart = e.start.split('T')[0];
             const eEnd = e.end.split('T')[0];
